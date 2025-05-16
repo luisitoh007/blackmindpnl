@@ -35,8 +35,44 @@
       border-left: 4px solid var(--accent);
       padding: 24px;
       border-radius: 8px;
-      margin: 40px auto;       /* centraliza horizontalmente */
-      max-width: 820px;         /* mantém largura alinhada ao container */
+      margin: 40px auto;
+      max-width: 820px;
+    }
+    /* CTA FINAL personalizado */
+    .cta-final .cta-box {
+      background: rgba(0, 200, 255, 0.1);
+      padding: 32px;
+      border-radius: 12px;
+      text-align: center;
+      margin: 40px auto;
+      max-width: 820px;
+    }
+    .cta-final h2 {
+      font-size: 2rem;
+      margin-bottom: 8px;
+    }
+    .cta-sub {
+      font-style: italic;
+      margin-bottom: 4px;
+    }
+    .cta-price {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .btn-cta {
+      font-size: 1.1rem;
+      padding: 16px 32px;
+    }
+    .cta-guarantee {
+      margin-top: 12px;
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+    .cta-guarantee span {
+      color: var(--accent);
+      margin-right: 4px;
     }
     footer { text-align: center; margin-top: 60px; font-size: .9rem; color: #666; }
   </style>
@@ -97,11 +133,14 @@
   </section>
 
   <!-- CTA FINAL -->
-  <section class="container" id="comprar" style="text-align:center;">
-    <h2>Pronto para assumir o controle?</h2>
-    <p>Oferta de lançamento: <strong>R$ 97</strong> (ou 10× no cartão). Acesso imediato.</p>
-    <br />
-    <a href="https://pay.kirvano.com/b942bff8-998d-498c-8f2a-1e05cbce9f61" class="btn" style="font-size:1.1rem;">Comprar Agora</a>
+  <section class="container cta-final" id="comprar">
+    <div class="cta-box">
+      <h2>Pronto para assumir o controle da sua mente?</h2>
+      <p class="cta-sub">Oferta de lançamento especial:</p>
+      <p class="cta-price">R$ 97 <span class="cta-installments">(até 10× no cartão)</span></p>
+      <a href="https://pay.kirvano.com/b942bff8-998d-498c-8f2a-1e05cbce9f61" class="btn btn-cta">👏 Sim, eu quero!</a>
+      <p class="cta-guarantee"><span>✔</span> Garantia de Satisfação: 7 dias para testar ou seu dinheiro de volta.</p>
+    </div>
   </section>
 
   <footer>
