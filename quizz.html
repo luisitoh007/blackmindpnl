@@ -5,20 +5,86 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Quiz BlackMind PNL</title>
   <style>
-    :root { --accent: #00c8ff; background: #000; color: #fff; }
+    :root {
+      --accent: #00c8ff;
+      --bg-gradient: linear-gradient(135deg, #090909 0%, #1a1a1a 100%);
+      --card-bg: rgba(13, 13, 13, 0.8);
+    }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Inter', sans-serif; background: #000; color: #fff; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
-    #quiz { width: 100%; max-width: 400px; }
-    .step { display: none; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-gradient);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+    #quiz {
+      width: 100%;
+      max-width: 500px;
+      background: rgba(0, 0, 0, 0.6);
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.7);
+      padding: 32px;
+      backdrop-filter: blur(10px);
+    }
+    .progress {
+      text-align: center;
+      margin-bottom: 16px;
+      font-size: 0.9rem;
+      color: #ccc;
+      position: relative;
+    }
+    .progress::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: calc((var(--step) - 1) / (var(--total) - 1) * 100%);
+      height: 4px;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+    .step {
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
     .step.active { display: block; }
-    h1 { font-size: 1.4rem; margin-bottom: 20px; color: var(--accent); text-align: center; }
-    .options button { width: 100%; padding: 12px; margin-bottom: 12px; background: #0d0d0d; border: none; border-radius: 6px; color: #fff; cursor: pointer; transition: background .2s; }
-    .options button:hover { background: #111; }
-    .progress { text-align: center; margin-bottom: 16px; font-size: 0.9rem; color: #ccc; }
+    h1 {
+      font-size: 1.6rem;
+      margin-bottom: 24px;
+      color: var(--accent);
+      text-align: center;
+      line-height: 1.4;
+    }
+    .options button {
+      width: 100%;
+      padding: 16px;
+      margin-bottom: 16px;
+      background: var(--card-bg);
+      border: 2px solid transparent;
+      border-radius: 8px;
+      color: #fff;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    }
+    .options button:hover {
+      background: rgba(13,13,13,1);
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
   </style>
 </head>
 <body>
-  <div id="quiz">
+  <div id="quiz" style="--step:1; --total:5;">
     <div class="progress" id="progress">Pergunta 1 de 5</div>
 
     <section class="step active" data-step="1">
@@ -70,11 +136,13 @@
   <script>
     let currentStep = 1;
     const totalSteps = 5;
+    const quizEl = document.getElementById('quiz');
     function showStep(step) {
       document.querySelectorAll('.step').forEach(sec => sec.classList.remove('active'));
       const active = document.querySelector(`.step[data-step="${step}"]`);
       if(active) active.classList.add('active');
       document.getElementById('progress').innerText = `Pergunta ${step} de ${totalSteps}`;
+      quizEl.style.setProperty('--step', step);
     }
     function nextStep() {
       if (currentStep < totalSteps) {
