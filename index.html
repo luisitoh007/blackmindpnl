@@ -30,7 +30,14 @@
     ul.pack { list-style: none; margin-top: 12px; }
     ul.pack li { margin: 8px 0; padding-left: 26px; position: relative; }
     ul.pack li:before { content: "✔"; position: absolute; left: 0; color: var(--accent); }
-    .guarantee { background: #0d0d0d; border-left: 4px solid var(--accent); padding: 24px; border-radius: 8px; margin: 40px 0; }
+    .guarantee {
+      background: #0d0d0d;
+      border-left: 4px solid var(--accent);
+      padding: 24px;
+      border-radius: 8px;
+      margin: 40px auto;       /* centraliza horizontalmente */
+      max-width: 820px;         /* mantém largura alinhada ao container */
+    }
     footer { text-align: center; margin-top: 60px; font-size: .9rem; color: #666; }
   </style>
 </head>
@@ -81,7 +88,7 @@
     </ul>
   </section>
 
-    <!-- GARANTIA -->
+  <!-- GARANTIA -->
   <section class="container">
     <div class="guarantee">
       <h2>Garantia blindada de 7 dias</h2>
