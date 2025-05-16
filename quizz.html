@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz BlackMind PNL</title>
+  <style>
+    :root { --accent: #00c8ff; background: #000; color: #fff; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #000; color: #fff; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+    #quiz { width: 100%; max-width: 400px; }
+    .step { display: none; }
+    .step.active { display: block; }
+    h1 { font-size: 1.4rem; margin-bottom: 20px; color: var(--accent); text-align: center; }
+    .options button { width: 100%; padding: 12px; margin-bottom: 12px; background: #0d0d0d; border: none; border-radius: 6px; color: #fff; cursor: pointer; transition: background .2s; }
+    .options button:hover { background: #111; }
+    .progress { text-align: center; margin-bottom: 16px; font-size: 0.9rem; color: #ccc; }
+  </style>
+</head>
+<body>
+  <div id="quiz">
+    <div class="progress" id="progress">Pergunta 1 de 5</div>
+
+    <section class="step active" data-step="1">
+      <h1>1. Qual seu maior desafio mental hoje?</h1>
+      <div class="options">
+        <button onclick="nextStep()">Manter o foco</button>
+        <button onclick="nextStep()">Controlar a ansiedade</button>
+        <button onclick="nextStep()">Comunicar com confiança</button>
+      </div>
+    </section>
+
+    <section class="step" data-step="2">
+      <h1>2. Quanto tempo você dedica ao autodesenvolvimento?</h1>
+      <div class="options">
+        <button onclick="nextStep()">Menos de 1 hora/dia</button>
+        <button onclick="nextStep()">1-2 horas/dia</button>
+        <button onclick="nextStep()">Mais de 2 horas/dia</button>
+      </div>
+    </section>
+
+    <section class="step" data-step="3">
+      <h1>3. Qual dessas técnicas de PNL você conhece?</h1>
+      <div class="options">
+        <button onclick="nextStep()">Ancoragem</button>
+        <button onclick="nextStep()">Rapport</button>
+        <button onclick="nextStep()">Reenquadramento</button>
+      </div>
+    </section>
+
+    <section class="step" data-step="4">
+      <h1>4. Com que frequência você pratica visualizações mentais?</h1>
+      <div class="options">
+        <button onclick="nextStep()">Nunca</button>
+        <button onclick="nextStep()">Às vezes</button>
+        <button onclick="nextStep()">Regularmente</button>
+      </div>
+    </section>
+
+    <section class="step" data-step="5">
+      <h1>5. Está pronto para transformar sua mente?</h1>
+      <div class="options">
+        <button onclick="finishQuiz()">Sim, quero começar agora</button>
+        <button onclick="finishQuiz()">Quero saber mais</button>
+        <button onclick="finishQuiz()">Decidir depois</button>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    let currentStep = 1;
+    const totalSteps = 5;
+    function showStep(step) {
+      document.querySelectorAll('.step').forEach(sec => sec.classList.remove('active'));
+      const active = document.querySelector(`.step[data-step="${step}"]`);
+      if(active) active.classList.add('active');
+      document.getElementById('progress').innerText = `Pergunta ${step} de ${totalSteps}`;
+    }
+    function nextStep() {
+      if (currentStep < totalSteps) {
+        currentStep++;
+        showStep(currentStep);
+      }
+    }
+    function finishQuiz() {
+      window.location.href = 'index.html';
+    }
+  </script>
+</body>
+</html>
