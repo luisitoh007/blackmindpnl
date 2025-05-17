@@ -147,9 +147,27 @@
     <section class="step" data-step="5">
       <h1>5. Está pronto para transformar sua mente?</h1>
       <div class="options">
-        <button onclick="finishQuiz()">Sim, quero começar agora</button>
-        <button onclick="finishQuiz()">Quero saber mais</button>
-        <button onclick="finishQuiz()">Decidir depois</button>
+        <button onclick="finishQuiz(this)">Sim, quero começar agora</button>
+        <button onclick="finishQuiz(this)">Quero saber mais</button>
+        <button onclick="finishQuiz(this)">Decidir depois</button>
+      </div>
+    </section>
+
+    <!-- RESULTADO PADRÃO -->
+    <section class="step" data-step="6">
+      <h1>Parabéns!</h1>
+      <p>Com base em suas respostas, você está pronto para assumir o controle total da sua mente.</p>
+      <div class="options">
+        <button onclick="goToProduct()">Conhecer BlackMind PNL™</button>
+      </div>
+    </section>
+
+    <!-- TELA MOTIVACIONAL -->
+    <section class="step" data-step="7">
+      <h1>Ei, não desista!</h1>
+      <p>Decidir depois é normal, mas sua jornada de transformação pode começar agora.</p>
+      <div class="options">
+        <button onclick="goToProduct()">Vamos lá, quero tentar!</button>
       </div>
     </section>
   </div>
@@ -171,7 +189,15 @@
         showStep(currentStep);
       }
     }
-    function finishQuiz() {
+    function finishQuiz(button) {
+      const choice = button.innerText;
+      if (choice.includes('Decidir depois')) {
+        showStep(7); // seção motivacional
+      } else {
+        showStep(6); // seção padrão
+      }
+    }
+    function goToProduct() {
       window.location.href = 'index.html';
     }
   </script>
