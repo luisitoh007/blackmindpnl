@@ -105,7 +105,7 @@
     <h1>Quiz: Descubra Seu Perfil Mental</h1>
     <p>Responda rápido e descubra como a PNL pode ajudá-lo</p>
   </div>
-  <div id="quiz" style="--step:1; --total:5;">
+  <div id="quiz" style="--step:1; --total:7;">
     <div class="progress" id="progress">Pergunta 1 de 5</div>
 
     <section class="step active" data-step="1">
@@ -164,17 +164,17 @@
 
     <!-- TELA MOTIVACIONAL -->
     <section class="step" data-step="7">
-      <h1>Ei, não desista!</h1>
-      <p>Decidir depois é normal, mas sua jornada de transformação pode começar agora.</p>
+      <h1>Espere! Você está quase lá!</h1>
+      <p>Só falta um passo para uma mente poderosa. Não deixe a oportunidade escapar.</p>
       <div class="options">
-        <button onclick="goToProduct()">Vamos lá, quero tentar!</button>
+        <button onclick="goToProduct()">Sim, eu quero dominar minha mente!</button>
       </div>
     </section>
   </div>
 
   <script>
     let currentStep = 1;
-    const totalSteps = 5;
+    const totalSteps = 7;
     const quizEl = document.getElementById('quiz');
     function showStep(step) {
       document.querySelectorAll('.step').forEach(sec => sec.classList.remove('active'));
