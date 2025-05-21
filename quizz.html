@@ -1,26 +1,22 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
-  <!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '593744580397100');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=593744580397100&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
+  <!-- Meta Pixel Code (unchanged) -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+    (window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '593744580397100');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=593744580397100&ev=PageView&noscript=1"/></noscript>
+  <!-- End Meta Pixel Code -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Quiz BlackMind PNL</title>
+  <title>BlackMind NLP Quiz</title>
   <style>
     :root {
       --accent: #00c8ff;
@@ -28,163 +24,89 @@ src="https://www.facebook.com/tr?id=593744580397100&ev=PageView&noscript=1"
       --card-bg: rgba(13, 13, 13, 0.8);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg-gradient);
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      padding: 20px;
-    }
-    .page-header {
-      position: absolute;
-      top: 20px;
-      text-align: center;
-      width: 100%;
-      color: #fff;
-    }
-    .page-header h1 {
-      font-size: 2rem;
-      letter-spacing: 1px;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.7);
-    }
-    .page-header p {
-      margin-top: 8px;
-      font-size: 1rem;
-      color: #ccc;
-    }
-    #quiz {
-      width: 100%;
-      max-width: 500px;
-      background: var(--card-bg);
-      border-radius: 16px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.7);
-      padding: 32px;
-      backdrop-filter: blur(10px);
-      margin-top: 80px;
-    }
-    .progress {
-      text-align: center;
-      margin-bottom: 16px;
-      font-size: 0.9rem;
-      color: #ccc;
-      position: relative;
-    }
-    .progress::after {
-      content: '';
-      position: absolute;
-      bottom: -8px;
-      left: 0;
-      width: calc((var(--step) - 1) / (var(--total) - 1) * 100%);
-      height: 4px;
-      background: var(--accent);
-      transition: width 0.3s ease;
-    }
-    .step {
-      display: none;
-      animation: fadeIn 0.5s ease;
-    }
+    body { font-family: 'Inter', sans-serif; background: var(--bg-gradient); color: #fff; display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 20px; }
+    .page-header { position: absolute; top: 20px; text-align: center; width: 100%; color: #fff; }
+    .page-header h1 { font-size: 2rem; letter-spacing: 1px; text-shadow: 0 2px 8px rgba(0,0,0,0.7); }
+    .page-header p { margin-top: 8px; font-size: 1rem; color: #ccc; }
+    #quiz { width: 100%; max-width: 500px; background: var(--card-bg); border-radius: 16px; box-shadow: 0 8px 24px rgba(0,0,0,0.7); padding: 32px; backdrop-filter: blur(10px); margin-top: 80px; }
+    .progress { text-align: center; margin-bottom: 16px; font-size: 0.9rem; color: #ccc; position: relative; }
+    .progress::after { content: ''; position: absolute; bottom: -8px; left: 0; width: calc((var(--step) - 1) / (var(--total) - 1) * 100%); height: 4px; background: var(--accent); transition: width 0.3s ease; }
+    .step { display: none; animation: fadeIn 0.5s ease; }
     .step.active { display: block; }
-    h1 {
-      font-size: 1.6rem;
-      margin-bottom: 24px;
-      color: var(--accent);
-      text-align: center;
-      line-height: 1.4;
-    }
-    .options button {
-      width: 100%;
-      padding: 16px;
-      margin-bottom: 16px;
-      background: var(--accent);
-      border: 2px solid transparent;
-      border-radius: 8px;
-      color: #000;
-      cursor: pointer;
-      font-size: 1rem;
-      transition: background 0.2s, transform 0.2s;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-    }
-    .options button:hover {
-      background: #00b0e0;
-      transform: translateY(-2px);
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    h1 { font-size: 1.6rem; margin-bottom: 24px; color: var(--accent); text-align: center; line-height: 1.4; }
+    .options button { width: 100%; padding: 16px; margin-bottom: 16px; background: var(--accent); border: 2px solid transparent; border-radius: 8px; color: #000; cursor: pointer; font-size: 1rem; transition: background 0.2s, transform 0.2s; box-shadow: 0 4px 12px rgba(0,0,0,0.5); }
+    .options button:hover { background: #00b0e0; transform: translateY(-2px); }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px);} to { opacity: 1; transform: translateY(0);} }
   </style>
 </head>
 <body>
   <div class="page-header">
-    <h1>Quiz: Descubra Seu Perfil Mental</h1>
-    <p>Responda rápido e descubra como a PNL pode ajudá-lo</p>
+    <h1>Quiz: Discover Your Mind Profile</h1>
+    <p>Answer quickly and see how NLP can boost your life</p>
   </div>
   <div id="quiz" style="--step:1; --total:7;">
-    <div class="progress" id="progress">Pergunta 1 de 5</div>
+    <div class="progress" id="progress">Question 1 of 5</div>
 
     <section class="step active" data-step="1">
-      <h1>1. Qual seu maior desafio mental hoje?</h1>
+      <h1>1. What is your biggest mental challenge today?</h1>
       <div class="options">
-        <button onclick="nextStep()">Manter o foco</button>
-        <button onclick="nextStep()">Controlar a ansiedade</button>
-        <button onclick="nextStep()">Comunicar com confiança</button>
+        <button onclick="nextStep()">Staying focused</button>
+        <button onclick="nextStep()">Controlling anxiety</button>
+        <button onclick="nextStep()">Communicating confidently</button>
       </div>
     </section>
 
     <section class="step" data-step="2">
-      <h1>2. Quanto tempo você dedica ao autodesenvolvimento?</h1>
+      <h1>2. How much time do you spend on self‑development?</h1>
       <div class="options">
-        <button onclick="nextStep()">Menos de 1 hora/dia</button>
-        <button onclick="nextStep()">1-2 horas/dia</button>
-        <button onclick="nextStep()">Mais de 2 horas/dia</button>
+        <button onclick="nextStep()">Less than 1 hour/day</button>
+        <button onclick="nextStep()">1–2 hours/day</button>
+        <button onclick="nextStep()">More than 2 hours/day</button>
       </div>
     </section>
 
     <section class="step" data-step="3">
-      <h1>3. Qual dessas técnicas de PNL você conhece?</h1>
+      <h1>3. Which NLP technique do you already know?</h1>
       <div class="options">
-        <button onclick="nextStep()">Ancoragem</button>
+        <button onclick="nextStep()">Anchoring</button>
         <button onclick="nextStep()">Rapport</button>
-        <button onclick="nextStep()">Reenquadramento</button>
+        <button onclick="nextStep()">Reframing</button>
       </div>
     </section>
 
     <section class="step" data-step="4">
-      <h1>4. Com que frequência você pratica visualizações mentais?</h1>
+      <h1>4. How often do you practice mental visualization?</h1>
       <div class="options">
-        <button onclick="nextStep()">Nunca</button>
-        <button onclick="nextStep()">Às vezes</button>
-        <button onclick="nextStep()">Regularmente</button>
+        <button onclick="nextStep()">Never</button>
+        <button onclick="nextStep()">Sometimes</button>
+        <button onclick="nextStep()">Regularly</button>
       </div>
     </section>
 
     <section class="step" data-step="5">
-      <h1>5. Está pronto para transformar sua mente?</h1>
+      <h1>5. Are you ready to transform your mind?</h1>
       <div class="options">
-        <button onclick="finishQuiz(this)">Sim, quero começar agora</button>
-        <button onclick="finishQuiz(this)">Quero saber mais</button>
-        <button onclick="finishQuiz(this)">Decidir depois</button>
+        <button onclick="finishQuiz(this)">Yes, I want to start now</button>
+        <button onclick="finishQuiz(this)">I want to know more</button>
+        <button onclick="finishQuiz(this)">Decide later</button>
       </div>
     </section>
 
-    <!-- RESULTADO PADRÃO -->
+    <!-- DEFAULT RESULT -->
     <section class="step" data-step="6">
-      <h1>Parabéns!</h1>
-      <p>Com base em suas respostas, você está pronto para assumir o controle total da sua mente.</p>
+      <h1>Congratulations!</h1>
+      <p>Based on your answers, you're ready to take full control of your mind.</p>
       <div class="options">
-        <button onclick="goToProduct()">Conhecer BlackMind PNL™</button>
+        <button onclick="goToProduct()">Check out BlackMind NLP™</button>
       </div>
     </section>
 
-    <!-- TELA MOTIVACIONAL -->
+    <!-- MOTIVATIONAL SCREEN -->
     <section class="step" data-step="7">
-      <h1>Espere! Você está quase lá!</h1>
-      <p>Só falta um passo para uma mente poderosa. Não deixe a oportunidade escapar.</p>
+      <h1>Wait! You're almost there!</h1>
+      <p>Just one step away from a powerful mind. Don't let the opportunity slip.</p>
       <div class="options">
-        <button onclick="goToProduct()">Sim, eu quero dominar minha mente!</button>
+        <button onclick="goToProduct()">Yes, I want to master my mind!</button>
       </div>
     </section>
   </div>
@@ -197,7 +119,7 @@ src="https://www.facebook.com/tr?id=593744580397100&ev=PageView&noscript=1"
       document.querySelectorAll('.step').forEach(sec => sec.classList.remove('active'));
       const active = document.querySelector(`.step[data-step="${step}"]`);
       if(active) active.classList.add('active');
-      document.getElementById('progress').innerText = `Pergunta ${step} de ${totalSteps}`;
+      if(step <= 5){ document.getElementById('progress').innerText = `Question ${step} of 5`; }
       quizEl.style.setProperty('--step', step);
     }
     function nextStep() {
@@ -208,10 +130,10 @@ src="https://www.facebook.com/tr?id=593744580397100&ev=PageView&noscript=1"
     }
     function finishQuiz(button) {
       const choice = button.innerText;
-      if (choice.includes('Decidir depois')) {
-        showStep(7); // seção motivacional
+      if (choice.includes('Decide later')) {
+        showStep(7);
       } else {
-        showStep(6); // seção padrão
+        showStep(6);
       }
     }
     function goToProduct() {
